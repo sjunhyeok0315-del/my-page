@@ -1,1 +1,378 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>송준혁 | 전기공학과 학생 소개</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Poppins:wght@600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --main-gradient: linear-gradient(135deg, #007bff 0%, #00d2ff 100%);
+            --bg-gradient: radial-gradient(circle at 10% 20%, #0a192f 0%, #020c1b 90%);
+            --glass-white: rgba(255, 255, 255, 0.9);
+            --primary-blue: #007bff;
+            --accent-blue: #00d2ff;
+        }
 
+        * {
+            box-sizing: border-box;
+            transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: var(--bg-gradient);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #2c3e50;
+            overflow-x: hidden;
+        }
+
+        /* Decorative Elements */
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+            animation: float 10s infinite alternate;
+        }
+        .circle-1 { width: 300px; height: 300px; background: rgba(0, 123, 255, 0.2); top: -50px; left: -50px; }
+        .circle-2 { width: 400px; height: 400px; background: rgba(0, 210, 255, 0.15); bottom: -100px; right: -50px; }
+
+        @keyframes float {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 50px); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            width: 95%;
+            max-width: 650px;
+            padding: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        header h1 {
+            font-family: 'Poppins', 'Noto Sans KR', sans-serif;
+            font-weight: 800;
+            font-size: 3.5rem;
+            margin: 0 0 30px 0;
+            background: var(--main-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -2px;
+        }
+
+        .profile-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .profile-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--main-gradient);
+        }
+
+        .profile-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .profile-item:last-child { border: none; }
+
+        .label {
+            font-weight: 700;
+            color: var(--primary-blue);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .value {
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: #34495e;
+        }
+
+        .intro-section {
+            text-align: left;
+            margin-top: 40px;
+        }
+
+        .section-title {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.6rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: #eee;
+            margin-left: 20px;
+        }
+
+        .intro-text {
+            font-size: 1.15rem;
+            line-height: 1.9;
+            color: #5d6d7e;
+            padding: 0 5px;
+        }
+
+        .hobby-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 25px;
+            justify-content: center;
+        }
+
+        .tag {
+            background: white;
+            color: var(--primary-blue);
+            padding: 10px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.1);
+            border: 1px solid var(--secondary-blue);
+            cursor: default;
+        }
+
+        .tag:hover {
+            transform: translateY(-5px);
+            background: var(--main-gradient);
+            color: white;
+            box-shadow: 0 10px 20px rgba(0, 123, 255, 0.3);
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.85rem;
+            color: #abb2b9;
+            letter-spacing: 1px;
+        }
+
+        /* Lightning Effect (Electric Engineering Theme) */
+        .electric-bolt {
+            position: fixed;
+            color: var(--accent-blue);
+            opacity: 0.15;
+            z-index: 0;
+            animation: pulse-float 8s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        @keyframes pulse-float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.1; }
+            50% { transform: translate(20px, -30px) rotate(15deg); opacity: 0.25; }
+        }
+
+        .bolt-1 { top: 15%; left: 10%; font-size: 3rem; animation-delay: 0s; }
+        .bolt-2 { top: 60%; left: 5%; font-size: 2.5rem; animation-delay: -2s; }
+        .bolt-3 { top: 20%; right: 10%; font-size: 4rem; animation-delay: -4s; }
+        .bolt-4 { top: 75%; right: 15%; font-size: 2rem; animation-delay: -1s; }
+        .bolt-5 { bottom: 10%; left: 40%; font-size: 3.5rem; animation-delay: -5s; }
+
+        /* Lightning Storm Effect */
+        .dark-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none;
+            animation: dark-mode 2s infinite;
+        }
+
+        .lightning-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            opacity: 0;
+            z-index: 2;
+            pointer-events: none;
+            animation: lightning-flash 2s infinite;
+        }
+
+        @keyframes dark-mode {
+            0%, 75% { opacity: 0; }
+            76%, 96% { opacity: 0.8; }
+            97%, 100% { opacity: 0; }
+        }
+
+        @keyframes lightning-flash {
+            0%, 77% { opacity: 0; }
+            78% { opacity: 0.7; }
+            79% { opacity: 0.1; }
+            80% { opacity: 1; }
+            83% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        /* Multi Lightning Strike Strike */
+        .strike {
+            position: fixed;
+            top: 0;
+            width: 250px;
+            height: 100%;
+            z-index: 3;
+            pointer-events: none;
+            opacity: 0;
+        }
+
+        .strike svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 20px rgba(0, 210, 255, 0.7));
+        }
+
+        .strike-center { left: 50%; transform: translateX(-50%); animation: bolt-strike-center 2s infinite; }
+        .strike-left { left: 5%; animation: bolt-strike-left 2s infinite; animation-delay: 0.05s; }
+        .strike-right { right: 5%; animation: bolt-strike-right 2s infinite; animation-delay: -0.1s; }
+
+        @keyframes bolt-strike-center {
+            0%, 77% { opacity: 0; transform: translateX(-50%) scaleY(0); }
+            78% { opacity: 1; transform: translateX(-48%) scaleY(1.1); }
+            80% { opacity: 1; transform: translateX(-52%) scaleY(1); }
+            82% { opacity: 0; transform: translateX(-50%) scaleY(0.9); }
+            100% { opacity: 0; }
+        }
+
+        @keyframes bolt-strike-left {
+            0%, 78% { opacity: 0; transform: scaleY(0) rotate(-5deg); }
+            79% { opacity: 1; transform: scaleY(1.2) rotate(-5deg); }
+            81% { opacity: 0; transform: scaleY(0.8) rotate(-5deg); }
+            100% { opacity: 0; }
+        }
+
+        @keyframes bolt-strike-right {
+            0%, 76% { opacity: 0; transform: scaleY(0) rotate(5deg); }
+            77% { opacity: 0.8; transform: scaleY(1.1) rotate(5deg); }
+            79% { opacity: 0; transform: scaleY(0.9) rotate(5deg); }
+            100% { opacity: 0; }
+        }
+
+        /* Responsive */
+        @media (max-width: 480px) {
+            header h1 { font-size: 2.5rem; }
+            .container { padding: 30px 20px; }
+            .value { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="dark-overlay"></div>
+<div class="lightning-overlay"></div>
+
+<!-- Multi Lightning Strikes -->
+<div class="strike strike-center">
+    <svg viewBox="0 0 100 1000" preserveAspectRatio="none">
+        <path d="M 50 0 L 70 200 L 30 400 L 80 600 L 20 800 L 50 1000" stroke="white" stroke-width="2" fill="none" />
+    </svg>
+</div>
+<div class="strike strike-left">
+    <svg viewBox="0 0 100 1000" preserveAspectRatio="none">
+        <path d="M 30 0 L 60 150 L 20 350 L 70 550 L 40 750 L 60 1000" stroke="white" stroke-width="1.5" fill="none" />
+    </svg>
+</div>
+<div class="strike strike-right">
+    <svg viewBox="0 0 100 1000" preserveAspectRatio="none">
+        <path d="M 70 0 L 40 250 L 80 450 L 30 650 L 60 850 L 20 1000" stroke="white" stroke-width="1.5" fill="none" />
+    </svg>
+</div>
+
+<div class="circle circle-1"></div>
+<div class="circle circle-2"></div>
+
+<!-- Lightning Decor -->
+<div class="electric-bolt bolt-1">⚡</div>
+<div class="electric-bolt bolt-2">⚡</div>
+<div class="electric-bolt bolt-3">⚡</div>
+<div class="electric-bolt bolt-4">⚡</div>
+<div class="electric-bolt bolt-5">⚡</div>
+
+<div class="container">
+    <header>
+        <h1>전기공학과 송준혁</h1>
+    </header>
+
+    <div class="profile-card">
+        <div class="profile-item">
+            <span class="label">Department</span>
+            <span class="value">전기공학과</span>
+        </div>
+        <div class="profile-item">
+            <span class="label">Student ID</span>
+            <span class="value">202510872</span>
+        </div>
+        <div class="profile-item">
+            <span class="label">Name</span>
+            <span class="value">송준혁</span>
+        </div>
+    </div>
+
+    <div class="intro-section">
+        <h2 class="section-title">About Me</h2>
+        <p class="intro-text">
+            안녕하세요! 에너지를 다루는 공학의 정수, 전기공학과에 재학 중인 <strong>송준혁</strong>입니다. 
+            현대 문명의 혈관과 같은 전기에 대해 배우며 더 나은 미래를 설계하고 싶습니다. 
+            단순한 지식 습득을 넘어, 실생활에 혁신을 가져오는 공학도가 되는 것이 저의 목표입니다.
+        </p>
+        
+        <h2 class="section-title">Interests</h2>
+        <div class="hobby-container">
+            <span class="tag">#게임</span>
+            <span class="tag">#유튜브</span>
+            <span class="tag">#전기공학</span>
+            <span class="tag">#회로설계</span>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 SONG JUN HYEOK. PRE-ENGINEER PORTFOLIO.
+    </footer>
+</div>
+
+</body>
+</html>
